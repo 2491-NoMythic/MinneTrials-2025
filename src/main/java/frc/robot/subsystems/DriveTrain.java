@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.OperatorConstants;
 
-public class DriveTrain extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
   private final TalonFX LeftDrive; 
   private final TalonFX RightDrive;
   private final DifferentialDrive BothDrive;
   
-  /** Creates a new DriveTrain. */
-  public DriveTrain() {
+  /** Creates a new Drivetrain. */
+  public Drivetrain() {
     LeftDrive = new TalonFX((OperatorConstants.leftDriveID));
     RightDrive = new TalonFX((OperatorConstants.rightDriveID));
     BothDrive = new DifferentialDrive(LeftDrive::set, RightDrive::set);

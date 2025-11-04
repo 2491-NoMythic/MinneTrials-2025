@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 /** An example command that uses an example subsystem. */
 public class Drive extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private DriveTrain commandDriveTrain;
+  private Drivetrain commandDrivetrain;
   private Joystick commandJoystick;
 
   private Drive drive;
 
-  public Drive(DriveTrain drivesystem, Joystick drivejoy) {
-    commandDriveTrain = drivesystem;
+  public Drive(Drivetrain drivesystem, Joystick drivejoy) {
+    commandDrivetrain = drivesystem;
     commandJoystick = drivejoy;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivesystem);
@@ -41,13 +41,14 @@ public class Drive extends Command {
       yAxis = 0;
     }
     // Uses our previously made Arcade drive and throttle to set how much moving the joystick will rotate or move the robot)
-      commandDriveTrain.adrive(yAxis*Constants.maxDrivetrainPow, commandJoystick.getZ()*-0.50);
+      commandDrivetrain.adrive(commandJoystick.getZ()*-0.50, yAxis*Constants.maxDrivetrainPow); //Rotation and speed are swapped from what the tooltip would imply
       
     // double curPosition = commandDrivetrain.GetPosition();
     // System.out.println(curPosition);
      
-      double curSpeed = commandDriveTrain.GetSpeed();
+      double curSpeed = commandDrivetrain.GetSpeed();
       System.out.println(curSpeed);
+      System.out.println(yAxis);
   }
 
   // Called once the command ends or is interrupted.
