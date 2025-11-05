@@ -19,6 +19,11 @@ public final class Constants {
     public static final int rightDriveID = 2;
     public static final int joystickPort = 0;
   }
+  public static class ButterEndEffectorConstants {
+    public static final int BUTTER_IN_MOTOR_ID = 0;
+    public static final int BUTTER_RAISE_MOTOR_ID = 0;
+    public static final double pi = 3.1415926;
+  }
 
   public static final double deadZone = 0.15;
   //The constant that we will mutiply with our speed to keep it below 10.5 ft per second. If we find that moving the stick to 0.5 is 9fs,
