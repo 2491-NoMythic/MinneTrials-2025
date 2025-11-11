@@ -22,15 +22,12 @@ public class ButterEndEffector extends SubsystemBase {
         ButterInMotor.set(speed);
 
     }
-    public void ButterInMotorStop(){
+    public void stopButterMotor(){
         ButterInMotor.set(0);
 
 
     }
-    public void runButterMotorIn(double RPM) {
+    public void runButterMotor(double RPM) {
         ButterInMotor.set(RPM);
-    }
-    public void runButterMotorOut(double RPM) {
-        ButterInMotor.set(-RPM);
     }
 }
