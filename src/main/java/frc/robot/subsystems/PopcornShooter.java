@@ -4,13 +4,14 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PopcornConstants;
 
 public class PopcornShooter extends SubsystemBase{
     SparkMax elevatorMotor;
     SparkMax shooterMotor;
     public PopcornShooter(){
-        elevatorMotor = new SparkMax(0, null);
-        shooterMotor = new SparkMax(0, null);
+        elevatorMotor = new SparkMax(PopcornConstants.ELEVATOR_MOTOR_ID, null);
+        shooterMotor = new SparkMax(PopcornConstants.SHOOTER_MOTOR_ID, null);
     }
 
     public void setElevator(double speed){
