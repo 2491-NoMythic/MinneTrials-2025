@@ -24,9 +24,8 @@ public class ButterEndEffector extends SubsystemBase {
     }
     public void stopButterMotor(){
         ButterInMotor.set(0);
-
-
     }
+    
     public void runButterMotor(double RPM) {
         ButterInMotor.set(RPM);
     }
