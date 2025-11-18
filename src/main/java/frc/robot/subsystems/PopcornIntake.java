@@ -16,11 +16,11 @@ public class PopcornIntake extends SubsystemBase{
         intakeMotor.set(speed);
     }
 
-    public void stopintake(){
+    public void stopIntake(){
         intakeMotor.set(0);
     }
 
-    public void runintakeUp(double RPM){
+    public void runIntakeUp(double RPM){
         intakeMotor.set(RPM);
     }
 }

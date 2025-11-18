@@ -8,20 +8,25 @@ import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.PopcornConstants;
+import frc.robot.subsystems.PopcornIntake;
 import frc.robot.subsystems.PopcornShooter;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class Popcorn extends Command {
   /** Creates a new Popcorn. */
   private final PopcornShooter shooter;
+  private final PopcornIntake intake;
   BooleanSupplier shootButton;
+  BooleanSupplier intakeButton;
 
-  public Popcorn(PopcornShooter pShooter, BooleanSupplier shootButton) {
+  public Popcorn(PopcornShooter pShooter, PopcornIntake pIntake, BooleanSupplier shootButton, BooleanSupplier intakeButton) {
     // Use addRequirements() here to declare subsystem dependencies.
     shooter = pShooter;
+    intake = pIntake;
     this.shootButton = shootButton;
+    this.intakeButton = intakeButton;
     addRequirements(pShooter);
-
+    addRequirements(pIntake);
   }
 
   // Called when the command is initially scheduled.
@@ -39,6 +44,15 @@ public class Popcorn extends Command {
     else {
       shooter.stopElevator();
     }
+
+    if (intakeButton.getAsBoolean()) {
+      shooter.setShooter(PopcornConstants.SHOOT_SPEED);
+      intake.setintake(PopcornConstants.INTAKE_SPEED);
+     }
+     else {
+       shooter.stopShooter();
+       intake.stopIntake();
+     }
 
   }
 
