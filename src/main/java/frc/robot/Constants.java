@@ -19,10 +19,21 @@ public final class Constants {
     public static final int rightDriveID = 2;
     public static final int joystickPort = 0;
   }
+  public static class ControllerConstants {
+    public static final int kControllerPort = 2;
+  }
   public static class ButterEndEffectorConstants {
     public static final int BUTTER_IN_MOTOR_ID = 0;
     public static final int BUTTER_RAISE_MOTOR_ID = 0;
     public static final double pi = 3.1415926;
+  }
+  public static class PopcornConstants {
+    public static final double SHOOT_SPEED = 0;
+    public static final double ELEVATOR_SPEED = 0;
+    public static final double INTAKE_SPEED = 0;
+    public static final int ELEVATOR_MOTOR_ID = 0;
+    public static final int SHOOTER_MOTOR_ID = 0;
+    public static final int POPCORN_INTAKE_MOTOR_ID = 2;
   }
 
   public static final double deadZone = 0.15;
