@@ -41,7 +41,9 @@ public class Drive extends Command {
       yAxis = 0;
     }
     // Uses our previously made Arcade drive and throttle to set how much moving the joystick will rotate or move the robot)
-      commandDrivetrain.adrive(commandJoystick.getZ()*0.50, -yAxis*Constants.maxDrivetrainPow); //Rotation and speed are swapped from what the tooltip would imply?
+ Butter-Work
+      commandDrivetrain.adrive(commandJoystick.getZ()*0.50, -yAxis*Constants.maxDrivetrainPow); //Rotation and speed are swapped from what the tooltip would imply
+ main
       
     // double curPosition = commandDrivetrain.GetPosition();
     // System.out.println(curPosition);
