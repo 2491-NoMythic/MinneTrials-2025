@@ -25,7 +25,11 @@ public final class Constants {
   public static class ButterEndEffectorConstants {
     public static final int BUTTER_IN_MOTOR_ID = 0;
     public static final int BUTTER_RAISE_MOTOR_ID = 0;
+    public static final int BUTTER_LOWER_LIMIT_ID = 0;
+    public static final int BUTTER_UPPER_LIMIT_ID = 1;
     public static final double pi = 3.1415926;
+    public static final double BUTTER_INTAKE_SPEED = 240;
+    public static final double BUTTER_EJECT_SPEED = -240;
   }
   public static class PopcornConstants {
     public static final double SHOOT_SPEED = 0;
