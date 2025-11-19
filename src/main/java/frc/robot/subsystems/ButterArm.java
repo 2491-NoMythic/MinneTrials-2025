@@ -40,10 +40,6 @@ public class ButterArm extends SubsystemBase{
         }
     }
 
-    public void lower(double speed){
-
-    }
-
     public void limitSwitchHit(Boolean pressed){
         limitSwitchPressed = pressed; //Update the limit switch state
 
