@@ -38,29 +38,40 @@ public class ButterArm extends SubsystemBase{
         ButterArmMotor.set(0);
     }
 
+    /** Transforms an angle in radians into a number of motor rotations. */
+    public double whatsThatInRotations(double radians){
+        return radians/(2 * ButterEndEffectorConstants.pi); //Convert radians to rotations
+    }
+
+    /** Transforms an number of motor rotations into an angle in radians. */
+    public double whatsThatInRadians(double rotations){
+        return rotations * 2 * ButterEndEffectorConstants.pi;
+    }
+
     public void startButterArmMotor(double radians, double timeframe){
         if(timeframe == 0) {timeframe = 2;} //Default value for timeframe is two seconds
         
-        double rotations = radians/(2 * ButterEndEffectorConstants.pi); //Convert radians to rotations
+        double rotations = whatsThatAngle(radians);//double rotations = radians/(2 * ButterEndEffectorConstants.pi); //Convert radians to rotations
         double speed = rotations * (60/timeframe);  //Convert rotations to speed (RPM) over timeframe
                                                     //This is effectively distributing the single (decimal) number of rotations
                                                     //over the period of time that we are going to be running the motor for.
         currentSpeed = speed;
         
-        if(!checkLimitSwitches()) {
+        if(!checkLimits(ButterArmMotor)) {
             set(speed);
         }
 
     }
 
-    public Boolean checkLimitSwitches(){
-        if(currentSpeed > 0 && upperLimitSwitch.get()){
-            System.out.println("Cancelled raising ButterArm because the Upper Limit Switch is " + upperLimitSwitch.get());
+    public Boolean checkLimits(SparkMax motor){
+        double currentRotation = whatsThatInRadians(ButterArmMotor.getEncoder().getPosition());
+        if(currentSpeed > 0 && currentRotation >= ButterEndEffectorConstants.BUTTER_UPPER_LIMIT){
+            System.out.println("Cancelled raising ButterArm because it's too high at (in rotations) " + currentRotation + " while the upper limit is (in rotations) " + ButterEndEffectorConstants.BUTTER_UPPER_LIMIT);
 
             stopButterArmMotor();
             return true;
-        } else if(currentSpeed < 0 && lowerLimitSwitch.get()) {
-            System.out.println("Cancelled lowering ButterArm because the Lower Limit Switch is " + lowerLimitSwitch.get());
+        } else if(currentSpeed < 0 && currentRotation <= ButterEndEffectorConstants.BUTTER_LOWER_LIMIT) {
+            System.out.println("Cancelled lowering ButterArm because it's too low at (in rotations) " + currentRotation + " while the lower limit is (in rotations) " + ButterEndEffectorConstants.BUTTER_LOWER_LIMIT);
 
             stopButterArmMotor();
             return true;
