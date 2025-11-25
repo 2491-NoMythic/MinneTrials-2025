@@ -30,8 +30,10 @@ public final class Constants {
   public static class PopcornConstants {
     public static final double SHOOT_SPEED = 0;
     public static final double ELEVATOR_SPEED = 0;
+    public static final double INTAKE_SPEED = 0;
     public static final int ELEVATOR_MOTOR_ID = 0;
     public static final int SHOOTER_MOTOR_ID = 0;
+    public static final int POPCORN_INTAKE_MOTOR_ID = 2;
   }
 
   public static final double deadZone = 0.15;
