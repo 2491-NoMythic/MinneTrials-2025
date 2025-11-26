@@ -22,7 +22,6 @@ public class ButterArm extends SubsystemBase{
     double currentSpeed;
 
     public ButterArm(){
-
         ButterArmMotor = new SparkMax(ButterEndEffectorConstants.BUTTER_RAISE_MOTOR_ID, null);
     }
 
