@@ -32,13 +32,18 @@ public class ButterLift extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ButterArm.startButterArmMotor(ButterEndEffectorConstants.BUTTER_UPPER_LIMIT, ButterEndEffectorConstants.BUTTER_ARM_ETA);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    if(commandJoystick.getRawButtonPressed(ButterEndEffectorConstants.BUTTER_ARM_TRIGGER_ID)){
+      ButterArm.startButterArmMotor(ButterEndEffectorConstants.BUTTER_ARM_ROTATION_AMOUNT, ButterEndEffectorConstants.BUTTER_ARM_ETA);
+    }
+    if(commandJoystick.getRawButtonReleased(ButterEndEffectorConstants.BUTTER_ARM_TRIGGER_ID)){
+      ButterArm.startButterArmMotor(-ButterEndEffectorConstants.BUTTER_ARM_ROTATION_AMOUNT, ButterEndEffectorConstants.BUTTER_ARM_ETA); //negative in front is important as hell here
+    }
   }
 
   // Called once the command ends or is interrupted.
