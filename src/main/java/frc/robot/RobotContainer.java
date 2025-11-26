@@ -8,12 +8,21 @@ import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveAuto;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.PopcornAuto;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.PopcornIntake;
+import frc.robot.subsystems.PopcornShooter;
+import frc.robot.subsystems.ButterArm;
+import frc.robot.subsystems.ButterEndEffector;
 import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -26,14 +35,24 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain conDrivetrain = new Drivetrain();
+  private final PopcornShooter conPopcornShooter = new PopcornShooter();
+  private final PopcornIntake conPopcornIntake = new PopcornIntake();
+  private final ButterEndEffector conButterEndEffector = new ButterEndEffector();
+  private final ButterArm conButterArm = new ButterArm();
   private final Joystick conJoystick = new Joystick(OperatorConstants.joystickPort);
   private final PS4Controller controller = new PS4Controller(ControllerConstants.kControllerPort);
+  private SendableChooser<SequentialCommandGroup> chooser;
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    chooser = new SendableChooser<SequentialCommandGroup>();
+
+    chooser.addOption("DriveStraight", new SequentialCommandGroup(new DriveAuto(conDrivetrain, 0, 0)));
+    chooser.addOption("PopcornAuto", new PopcornAuto(conDrivetrain, conPopcornIntake, conPopcornShooter));
   }
 
   /**
@@ -56,6 +75,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(null);
+    return chooser.getSelected();
   }
 }
