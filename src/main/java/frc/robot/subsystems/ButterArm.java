@@ -24,8 +24,6 @@ public class ButterArm extends SubsystemBase{
     public ButterArm(){
 
         ButterArmMotor = new SparkMax(ButterEndEffectorConstants.BUTTER_RAISE_MOTOR_ID, null);
-        lowerLimitSwitch = new DigitalInput(ButterEndEffectorConstants.BUTTER_LOWER_LIMIT_ID);
-        upperLimitSwitch = new DigitalInput(ButterEndEffectorConstants.BUTTER_UPPER_LIMIT_ID);
     }
 
     public void set(double speed){
@@ -51,7 +49,7 @@ public class ButterArm extends SubsystemBase{
     public void startButterArmMotor(double radians, double timeframe){
         if(timeframe == 0) {timeframe = 2;} //Default value for timeframe is two seconds
         
-        double rotations = whatsThatAngle(radians);//double rotations = radians/(2 * ButterEndEffectorConstants.pi); //Convert radians to rotations
+        double rotations = whatsThatInRotations(radians);//double rotations = radians/(2 * ButterEndEffectorConstants.pi); //Convert radians to rotations
         double speed = rotations * (60/timeframe);  //Convert rotations to speed (RPM) over timeframe
                                                     //This is effectively distributing the single (decimal) number of rotations
                                                     //over the period of time that we are going to be running the motor for.

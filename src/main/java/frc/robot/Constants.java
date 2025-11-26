@@ -25,20 +25,22 @@ public final class Constants {
   public static class ButterEndEffectorConstants {
     public static final int BUTTER_IN_MOTOR_ID = 0;
     public static final int BUTTER_RAISE_MOTOR_ID = 0;
-    public static final int BUTTER_LOWER_LIMIT = 0; //In decimal rotations
-    public static final int BUTTER_UPPER_LIMIT = 0; //In (decimal) rotations
     public static final double pi = 3.1415926;
+    public static final int BUTTER_UPPER_LIMIT = 0;
+    public static final int BUTTER_LOWER_LIMIT = 0;
     public static final double BUTTER_INTAKE_SPEED = 240;
-    public static final double BUTTER_EJECT_SPEED = -240;
+    public static final double BUTTER_EJECT_SPEED = 240;
+
+
   }
   public static class PopcornConstants {
     public static final double SHOOT_SPEED = 0;
     public static final double ELEVATOR_SPEED = 0;
-    public static final double INTAKE_SPEED = 0;
     public static final int ELEVATOR_MOTOR_ID = 0;
     public static final int SHOOTER_MOTOR_ID = 0;
-    public static final int POPCORN_INTAKE_MOTOR_ID = 2;
+    public static final double INTAKE_SPEED = 0;
   }
+
 
   public static final double deadZone = 0.15;
   //The constant that we will mutiply with our speed to keep it below 10.5 ft per second. If we find that moving the stick to 0.5 is 9fs,

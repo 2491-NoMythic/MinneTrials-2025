@@ -30,7 +30,6 @@ public class Drivetrain extends SubsystemBase {
     LeftDrive.setSafetyEnabled(false);
     RightDrive.setNeutralMode(NeutralModeValue.Brake);
     RightDrive.setSafetyEnabled(false);
-
     
 
 
@@ -41,7 +40,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void tdrive(double lspeed, double rspeed){
-    BothDrive.tankDrive(-lspeed, -rspeed);
+    BothDrive.tankDrive(lspeed, rspeed);
   }
 
   public void stop(){
