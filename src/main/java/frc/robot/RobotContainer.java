@@ -22,7 +22,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -66,6 +68,22 @@ public class RobotContainer {
    */
   private void configureBindings() {
     conDrivetrain.setDefaultCommand(new Drive(conDrivetrain, conJoystick));
+
+    new Trigger(()->controller.getRightY() < -0.5).whileTrue(new StartEndCommand(()->conPopcornShooter.setElevator(0.2), ()->conPopcornShooter.stopElevator(), conPopcornShooter));
+    new Trigger(()->controller.getRightY() > 0.5).whileTrue(new StartEndCommand(()->conPopcornShooter.setElevator(-0.2), ()->conPopcornShooter.stopElevator(), conPopcornShooter));
+    new Trigger(()->controller.getR1Button()).whileTrue(new StartEndCommand(()->conButterEndEffector.set(-0.2), ()->conButterEndEffector.stopButterMotor(), conButterEndEffector));
+    new Trigger(()->controller.getR2Button()).whileTrue(new StartEndCommand(()->conButterEndEffector.set(1), ()->conButterEndEffector.stopButterMotor(), conButterEndEffector));
+   // new Trigger(()->controller.)
+  }
+
+  public void teleOpInit() {
+    conPopcornShooter.setShooter(0.3);
+    conPopcornIntake.setintake(0.3);
+  }
+
+  public void disabledInit() {
+    conPopcornShooter.stopShooter();
+    conPopcornIntake.stopIntake();
   }
 
   /**
