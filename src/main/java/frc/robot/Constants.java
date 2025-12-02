@@ -23,22 +23,24 @@ public final class Constants {
     public static final int kControllerPort = 2;
   }
   public static class ButterEndEffectorConstants {
-    public static final int BUTTER_IN_MOTOR_ID = 0;
-    public static final int BUTTER_RAISE_MOTOR_ID = 0;
+    public static final int BUTTER_IN_MOTOR_ID = 5;
+    public static final int BUTTER_RAISE_MOTOR_ID = 6;
     public static final double pi = 3.1415926;
+    public static final int BUTTER_ARM_TRIGGER_ID = 0;
     public static final int BUTTER_UPPER_LIMIT = 0;
     public static final int BUTTER_LOWER_LIMIT = 0;
+    public static final double BUTTER_ARM_ROTATION_AMOUNT = 0;
+    public static final double BUTTER_ARM_ETA = 0;
     public static final double BUTTER_INTAKE_SPEED = 240;
     public static final double BUTTER_EJECT_SPEED = 240;
 
-    
   }
   public static class PopcornConstants {
     public static final double SHOOT_SPEED = 0;
     public static final double ELEVATOR_SPEED = 0;
-    public static final int ELEVATOR_MOTOR_ID = 0;
-    public static final int SHOOTER_MOTOR_ID = 0;
-    public static final double INTAKE_SPEED = 0;
+    public static final int ELEVATOR_MOTOR_ID = 4;
+    public static final int SHOOTER_MOTOR_ID = 3;
+    public static final double INTAKE_SPEED = 7;
   }
 
 
