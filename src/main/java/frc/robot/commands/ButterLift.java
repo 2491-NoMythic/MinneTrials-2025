@@ -32,7 +32,7 @@ public class ButterLift extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ButterArm.startButterArmMotor(ButterEndEffectorConstants.BUTTER_UPPER_LIMIT, ButterEndEffectorConstants.BUTTER_ARM_ETA);
+    ButterArm.startButterArmMotor(ButterEndEffectorConstants.BUTTER_UPPER_LIMIT, 1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

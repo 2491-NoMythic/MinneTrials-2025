@@ -31,7 +31,7 @@ public final class Constants {
     public static final double BUTTER_INTAKE_SPEED = 240;
     public static final double BUTTER_EJECT_SPEED = 240;
 
-
+    
   }
   public static class PopcornConstants {
     public static final double SHOOT_SPEED = 0;

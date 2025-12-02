@@ -1,4 +1,5 @@
 package frc.robot.subsystems;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.SparkMax;
 
@@ -8,13 +9,11 @@ import frc.robot.Constants.ButterEndEffectorConstants;
 
 
 public class ButterEndEffector extends SubsystemBase {
-     SparkMax ButterInMotor;
-     SparkAnalogSensor ButterSensor;
+     TalonFX ButterInMotor;
 
 
     public ButterEndEffector(){
-        ButterInMotor = new SparkMax(ButterEndEffectorConstants.BUTTER_IN_MOTOR_ID, null);
-        ButterSensor = ButterInMotor.getAnalog();
+        ButterInMotor = new TalonFX(ButterEndEffectorConstants.BUTTER_IN_MOTOR_ID);
 
     }
 
