@@ -2,8 +2,12 @@ package frc.robot.subsystems;
 
 import java.io.PrintStream;
 
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkBaseConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -14,15 +18,22 @@ import frc.robot.Constants.ButterEndEffectorConstants;
 
 public class ButterArm extends SubsystemBase{
 
-    SparkMax ButterArmMotor;
+    TalonFX ButterArmMotor;
 
     DigitalInput upperLimitSwitch;
     DigitalInput lowerLimitSwitch;
 
     double currentSpeed;
 
+    TalonFXConfiguration ButterArmConfig;
+
     public ButterArm(){
-        ButterArmMotor = new SparkMax(ButterEndEffectorConstants.BUTTER_RAISE_MOTOR_ID, null);
+        ButterArmMotor = new TalonFX(ButterEndEffectorConstants.BUTTER_RAISE_MOTOR_ID);
+
+        ButterArmConfig = new TalonFXConfiguration().withCurrentLimits(new CurrentLimitsConfigs()
+        .withStatorCurrentLimit(25)
+        .withStatorCurrentLimitEnable(true)
+        .withSupplyCurrentLimitEnable(true));
     }
 
     public void set(double speed){
@@ -60,8 +71,8 @@ public class ButterArm extends SubsystemBase{
 
     }
 
-    public Boolean checkLimits(SparkMax motor){
-        double currentRotation = whatsThatInRadians(ButterArmMotor.getEncoder().getPosition());
+    public Boolean checkLimits(TalonFX butterArmMotor2){
+        double currentRotation = whatsThatInRadians(ButterArmMotor.getPosition().getValueAsDouble());
         if(currentSpeed > 0 && currentRotation >= ButterEndEffectorConstants.BUTTER_UPPER_LIMIT){
             System.out.println("Cancelled raising ButterArm because it's too high at (in rotations) " + currentRotation + " while the upper limit is (in rotations) " + ButterEndEffectorConstants.BUTTER_UPPER_LIMIT);
 
@@ -75,5 +86,6 @@ public class ButterArm extends SubsystemBase{
         } else {
             return false;
         }
+        
     }
 }
