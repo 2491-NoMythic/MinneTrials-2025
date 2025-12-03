@@ -73,12 +73,13 @@ public class RobotContainer {
     new Trigger(()->controller.getRightY() > 0.5).whileTrue(new StartEndCommand(()->conPopcornShooter.setElevator(-0.2), ()->conPopcornShooter.stopElevator(), conPopcornShooter));
     new Trigger(()->controller.getR1Button()).whileTrue(new StartEndCommand(()->conButterEndEffector.set(-0.2), ()->conButterEndEffector.stopButterMotor(), conButterEndEffector));
     new Trigger(()->controller.getR2Button()).whileTrue(new StartEndCommand(()->conButterEndEffector.set(1), ()->conButterEndEffector.stopButterMotor(), conButterEndEffector));
-   // new Trigger(()->controller.)
+    new Trigger(()->controller.getCircleButton()).whileTrue(new StartEndCommand(()->conButterArm.set(1),()-> conButterArm.stopButterArmMotor(), conButterArm));
+    // new Trigger(()->controller.)
   }
 
   public void teleOpInit() {
-    conPopcornShooter.setShooter(0.3);
-    conPopcornIntake.setintake(0.3);
+    conPopcornShooter.setShooterVoltage(9);
+    conPopcornIntake.setintake(0.6);
   }
 
   public void disabledInit() {

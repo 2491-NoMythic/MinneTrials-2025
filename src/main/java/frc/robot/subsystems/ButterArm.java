@@ -3,8 +3,11 @@ package frc.robot.subsystems;
 import java.io.PrintStream;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig;
@@ -30,10 +33,16 @@ public class ButterArm extends SubsystemBase{
     public ButterArm(){
         ButterArmMotor = new TalonFX(ButterEndEffectorConstants.BUTTER_RAISE_MOTOR_ID);
 
-        ButterArmConfig = new TalonFXConfiguration().withCurrentLimits(new CurrentLimitsConfigs()
-        .withStatorCurrentLimit(25)
-        .withStatorCurrentLimitEnable(true)
-        .withSupplyCurrentLimitEnable(true));
+        ButterArmConfig = new TalonFXConfiguration()
+            .withCurrentLimits(new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(25)
+                .withSupplyCurrentLimit(50)
+                .withStatorCurrentLimitEnable(true)
+                .withSupplyCurrentLimitEnable(true))
+            .withMotorOutput(new MotorOutputConfigs()
+                .withInverted(InvertedValue.Clockwise_Positive));
+
+        ButterArmMotor.getConfigurator().apply(ButterArmConfig);
     }
 
     public void set(double speed){
@@ -87,5 +96,9 @@ public class ButterArm extends SubsystemBase{
             return false;
         }
         
+    }
+     
+    public void setVoltage(double Voltage){
+        ButterArmMotor.setControl(new VoltageOut(Voltage));
     }
 }

@@ -15,7 +15,7 @@ public class PopcornIntake extends SubsystemBase{
     public PopcornIntake(){
         intakeMotor = new SparkMax(INTAKE_MOTOR_ID, MotorType.kBrushless);
         intakeConfig = new SparkMaxConfig();
-        intakeConfig.smartCurrentLimit(25);
+        intakeConfig.smartCurrentLimit(10);
         intakeMotor.configure(intakeConfig, null, null);
     }
 

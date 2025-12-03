@@ -5,6 +5,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkMax;
 
@@ -17,11 +18,14 @@ public class PopcornShooter extends SubsystemBase{
     public PopcornShooter(){
         elevatorMotor = new TalonFX(PopcornConstants.ELEVATOR_MOTOR_ID);
         shooterMotor = new TalonFX(PopcornConstants.SHOOTER_MOTOR_ID);
-        elevatorMotor.getConfigurator().apply(new TalonFXConfiguration());
+        elevatorMotor.getConfigurator().apply(new TalonFXConfiguration()
+            .withCurrentLimits(new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(50)
+                .withStatorCurrentLimitEnable(true)));
         shooterMotor.getConfigurator().apply(new TalonFXConfiguration()
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimitEnable(true)
-                .withStatorCurrentLimit(25))
+                .withStatorCurrentLimit(10))
             .withMotorOutput(new MotorOutputConfigs()
                 .withInverted(InvertedValue.Clockwise_Positive)));
     }
@@ -32,6 +36,10 @@ public class PopcornShooter extends SubsystemBase{
 
     public void setShooter(double speed){
        shooterMotor.set(speed);
+    }
+
+    public void setShooterVoltage(double volts) {
+        shooterMotor.setControl(new VoltageOut(volts));
     }
 
     public void stopShooter(){

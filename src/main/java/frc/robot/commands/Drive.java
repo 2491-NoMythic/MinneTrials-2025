@@ -47,8 +47,6 @@ public class Drive extends Command {
     // System.out.println(curPosition);
      
       double curSpeed = commandDrivetrain.GetSpeed();
-      System.out.println(curSpeed);
-      System.out.println(yAxis);
   }
 
   // Called once the command ends or is interrupted.
