@@ -1,6 +1,10 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkMax;
 
@@ -13,6 +17,13 @@ public class PopcornShooter extends SubsystemBase{
     public PopcornShooter(){
         elevatorMotor = new TalonFX(PopcornConstants.ELEVATOR_MOTOR_ID);
         shooterMotor = new TalonFX(PopcornConstants.SHOOTER_MOTOR_ID);
+        elevatorMotor.getConfigurator().apply(new TalonFXConfiguration());
+        shooterMotor.getConfigurator().apply(new TalonFXConfiguration()
+            .withCurrentLimits(new CurrentLimitsConfigs()
+                .withStatorCurrentLimitEnable(true)
+                .withStatorCurrentLimit(25))
+            .withMotorOutput(new MotorOutputConfigs()
+                .withInverted(InvertedValue.Clockwise_Positive)));
     }
 
     public void setElevator(double speed){

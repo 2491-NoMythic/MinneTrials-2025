@@ -40,6 +40,7 @@ public final class Constants {
     public static final double ELEVATOR_SPEED = 0;
     public static final int ELEVATOR_MOTOR_ID = 4;
     public static final int SHOOTER_MOTOR_ID = 3;
+    public static final int INTAKE_MOTOR_ID = 7;
     public static final double INTAKE_SPEED = 7;
   }
 
