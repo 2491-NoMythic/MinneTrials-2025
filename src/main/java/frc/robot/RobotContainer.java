@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveAuto;
+import frc.robot.commands.DriveShootAuto;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.PopcornAuto;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -20,7 +21,9 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -53,8 +56,10 @@ public class RobotContainer {
 
     chooser = new SendableChooser<SequentialCommandGroup>();
 
-    chooser.addOption("DriveStraight", new SequentialCommandGroup(new DriveAuto(conDrivetrain, 0, 0)));
+    chooser.addOption("DriveStraight", new SequentialCommandGroup(new DriveAuto(conDrivetrain,0.4, 3)));
     chooser.addOption("PopcornAuto", new PopcornAuto(conDrivetrain, conPopcornIntake, conPopcornShooter));
+    chooser.addOption("DriveShootAuto", new DriveShootAuto(conDrivetrain, conPopcornShooter)); 
+    SmartDashboard.putData(chooser);
   }
 
   /**

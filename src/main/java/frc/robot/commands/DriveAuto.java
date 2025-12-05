@@ -34,7 +34,7 @@ public class DriveAuto extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.adrive(-driveSpeed, 0);
+    drivetrain.adrive(0, driveSpeed);
 
   }
 

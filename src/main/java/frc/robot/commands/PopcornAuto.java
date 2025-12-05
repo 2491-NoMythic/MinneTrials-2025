@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PopcornIntake;
@@ -15,10 +17,11 @@ public class PopcornAuto extends SequentialCommandGroup {
 
   public PopcornAuto(Drivetrain drivetrain, PopcornIntake popcornIntake, PopcornShooter popcornShooter) {
     addCommands(
-      new DriveAuto(drivetrain, 0, 0), 
-      new RotationAuto(drivetrain, 0, 0),
-      new ParallelCommandGroup(new DriveAuto(drivetrain, 0, 0), new PopcornIntakeAuto(popcornIntake, 0)),
-      new PopcornShooterAuto(popcornShooter, 0)
+      new InstantCommand(()->popcornShooter.setShooterVoltage(9)),
+      new DriveAuto(drivetrain, 0.4, 4), 
+      new RotationAuto(drivetrain, -0.4, 1.5),
+      new ParallelCommandGroup(new DriveAuto(drivetrain, 0.4, 3.5), new PopcornIntakeAuto(popcornIntake, 3.5)),
+      new ParallelRaceGroup(new PopcornShooterAuto(popcornShooter, 7), new PopcornIntakeAuto (popcornIntake,7))
     );
   }
   
