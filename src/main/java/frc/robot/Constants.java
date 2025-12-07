@@ -24,6 +24,7 @@ public final class Constants {
   }
   public static class ButterEndEffectorConstants {
     public static final int BUTTER_IN_MOTOR_ID = 5;
+    public static final int BUTTER_LEFT_IN_MOTOR_ID = 5;
     public static final int BUTTER_RAISE_MOTOR_ID = 6;
     public static final double pi = 3.1415926;
     public static final int BUTTER_ARM_TRIGGER_ID = 0;
